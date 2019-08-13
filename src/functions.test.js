@@ -62,7 +62,20 @@
  *    // your code here
  * }
  */
+const yelling = array => {
+  return array.map(element => {
+    return element.toUpperCase();
+  });
+};
+// const yelling = array => {
+//   let newArray = [];
 
+//   for (let i = 0; i < array.length; i++) {
+//     let ele = array[i].toUpperCase();
+//     newArray.push(ele);
+//   }
+//   return newArray;
+// };
 // ...
 
 /**
@@ -71,7 +84,15 @@
  * numbers as an argument and returns a new array with all
  * the numbers multiplied by 2
  */
+const doubleTrouble = array => {
+  let newArray = [];
 
+  for (let i = 0; i < array.length; i++) {
+    let ele = array[i] * 2;
+    newArray.push(ele);
+  }
+  return newArray;
+};
 // ...
 
 /*
@@ -80,13 +101,30 @@
  * suffixed with " is at index X" where X is the index of the element
  */
 
+const stringyIndexes = array => {
+  let newArray = [];
+
+  for (let i = 0; i < array.length; i++) {
+    newArray.push(array[i] + " is at index " + i);
+  }
+  return newArray;
+};
 // ...
 
 /*
  * Define a function onlyTheEvenSurvive that accepts an array of
  * numbers and returns only the elements that are even
  */
+const onlyTheEvenSurvive = array => {
+  const evens = [];
 
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] % 2 === 0) {
+      evens.push(array[i]);
+    }
+  }
+  return evens;
+};
 // ...
 
 /*
@@ -94,6 +132,16 @@
  * numbers and returns only the elements at indexes that are even
  */
 
+const onlyTheEvenIndexedSurvive = array => {
+  const evens = [];
+
+  for (let i = 0; i < array.length; i++) {
+    if (i % 2 === 0) {
+      evens.push(array[i]);
+    }
+  }
+  return evens;
+};
 // ...
 
 /*
@@ -109,7 +157,18 @@
  *   score: 99
  * }
  */
+const bestMoviesOfTheYear = (array, year) => {
+  let bestMovies = [];
 
+  for (let i = 0; i < array.length; i++) {
+    let movie = array[i];
+    if (movie.score > 90 && movie.year === year) {
+      bestMovies.push(movie.name);
+      // console.log(bestMovies);
+    }
+  }
+  return bestMovies;
+};
 // ...
 
 /*
@@ -117,14 +176,29 @@
  * numbers and returns true if every element of the array is
  * odd.
  */
-
+// const everyoneIsOdd = array => {};
 // ...
-
+const everyoneIsOdd = array => {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] % 2 === 0) {
+      return false;
+    }
+  }
+  return true;
+};
 /*
  * Define a function findTheNeedle that accepts an array of
  * strings and returns the one string that contains the word
  * `needle` inside
  */
+const findTheNeedle = array => {
+  const needle = array.filter((element, i) => {
+    if (element.includes("needle")) {
+      return element;
+    }
+  });
+  return needle[0];
+};
 
 // ...
 
@@ -134,6 +208,14 @@
  *  the word `needle` inside
  */
 
+const findTheNeedleIndex = array => {
+  const needle = array.filter((element, i) => {
+    if (element.includes("needle")) {
+      return element;
+    }
+  });
+  return array.indexOf(needle[0]);
+};
 // ...
 
 /*
@@ -141,6 +223,16 @@
  * strings and returns true if at least one string is exactly
  * four characters long
  */
+const someoneToLove = array => {
+  let inLove = false;
+
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].length === 4) {
+      inLove = true;
+    }
+  }
+  return inLove;
+};
 
 // ...
 
@@ -152,7 +244,16 @@
  *
  * So no using forEach, map, filter, reduce, etc.
  */
+const mapYourself = (array) => {
+  let doubled = [];
 
+  for (let i = 0; i < array.length; i++) {
+    let num = array[i];
+    let newNum = num * 2;
+    doubled.push(newNum);
+  }
+  return doubled.
+}
 // ...
 
 /*
@@ -164,7 +265,17 @@
  *
  * So no using forEach, map, filter, reduce, etc.
  */
+const filterYourself = (array) => {
+  let evens = [];
 
+  for (let i = 0; i < array.length; i++) {
+    let num = array[i];
+    if (num % 2 === 0) {
+      evens.push(num)
+    }
+  }
+  return evens;
+}
 // ...
 
 /*
@@ -176,7 +287,15 @@
  *
  * So no using forEach, map, filter, reduce, etc.
  */
-
+const everyYourself = (array) => {
+  for (let i = 0; i < array.length; i++) {
+    let num = array[i];
+    if (num % 2 !== 0) {
+      return false;
+    }
+  })
+  return true;
+}
 // ...
 
 /**
@@ -185,51 +304,53 @@
 
 /* eslint-disable no-undef */
 
-import test from 'ava'
+import test from "ava";
 
 const ensureDefined = (t, method) => {
-  if (eval(`typeof ${method}`) !== 'function') {
-    t.fail(`\n\n\n\n\n⚡️⚡️⚡️⚡️⚡️ The next step is to define the function ${method} ⚡️⚡️⚡️⚡️⚡️\n\n\n`)
+  if (eval(`typeof ${method}`) !== "function") {
+    t.fail(
+      `\n\n\n\n\n⚡️⚡️⚡️⚡️⚡️ The next step is to define the function ${method} ⚡️⚡️⚡️⚡️⚡️\n\n\n`
+    );
   }
-}
+};
 
-test('Function Check', t => ensureDefined(t, 'yelling'))
-test('yelling()', t => {
-  t.deepEqual(yelling(['now', 'is', 'the', 'time']), [
-    'NOW',
-    'IS',
-    'THE',
-    'TIME'
-  ])
-})
+test("Function Check", t => ensureDefined(t, "yelling"));
+test("yelling()", t => {
+  t.deepEqual(yelling(["now", "is", "the", "time"]), [
+    "NOW",
+    "IS",
+    "THE",
+    "TIME"
+  ]);
+});
 
-test('Function Check', t => ensureDefined(t, 'doubleTrouble'))
-test('doubleTrouble()', t => {
-  t.deepEqual(doubleTrouble([2, 3, 9, 0, -5]), [4, 6, 18, 0, -10])
-})
+test("Function Check", t => ensureDefined(t, "doubleTrouble"));
+test("doubleTrouble()", t => {
+  t.deepEqual(doubleTrouble([2, 3, 9, 0, -5]), [4, 6, 18, 0, -10]);
+});
 
-test('Function Check', t => ensureDefined(t, 'stringyIndexes'))
-test('stringyIndexes', t => {
-  t.deepEqual(stringyIndexes(['how', 'now', 'brown', 'cow']), [
-    'how is at index 0',
-    'now is at index 1',
-    'brown is at index 2',
-    'cow is at index 3'
-  ])
-})
+test("Function Check", t => ensureDefined(t, "stringyIndexes"));
+test("stringyIndexes", t => {
+  t.deepEqual(stringyIndexes(["how", "now", "brown", "cow"]), [
+    "how is at index 0",
+    "now is at index 1",
+    "brown is at index 2",
+    "cow is at index 3"
+  ]);
+});
 
-test('Function Check', t => ensureDefined(t, 'onlyTheEvenSurvive'))
-test('onlyTheEvenSurvive', t => {
+test("Function Check", t => ensureDefined(t, "onlyTheEvenSurvive"));
+test("onlyTheEvenSurvive", t => {
   t.deepEqual(onlyTheEvenSurvive([42, 50, 100, 5, -43, 17, 44]), [
     42,
     50,
     100,
     44
-  ])
-})
+  ]);
+});
 
-test('Function Check', t => ensureDefined(t, 'onlyTheEvenIndexedSurvive'))
-test('onlyTheEvenIndexedSurvive', t => {
+test("Function Check", t => ensureDefined(t, "onlyTheEvenIndexedSurvive"));
+test("onlyTheEvenIndexedSurvive", t => {
   t.deepEqual(
     onlyTheEvenIndexedSurvive([
       31,
@@ -297,93 +418,93 @@ test('onlyTheEvenIndexedSurvive', t => {
       29,
       72
     ]
-  )
-})
+  );
+});
 
-test('Function Check', t => ensureDefined(t, 'bestMoviesOfTheYear'))
-test('bestMoviesOfTheYear', t => {
+test("Function Check", t => ensureDefined(t, "bestMoviesOfTheYear"));
+test("bestMoviesOfTheYear", t => {
   const movies = [
-    { name: 'The Grand Budapest Hotel', year: 2014, score: 91 },
-    { name: 'Birdman', year: 2014, score: 91 },
-    { name: 'Transformers: Age of Extinction', year: 2014, score: 18 },
-    { name: 'Rage', year: 2014, score: 14 },
-    { name: 'Get Out', year: 2017, score: 99 },
-    { name: 'Justice League', year: 2017, score: 40 },
-    { name: 'Ghost in the Shell', year: 2017, score: 46 },
-    { name: 'The Big Sick', year: 2017, score: 98 }
-  ]
+    { name: "The Grand Budapest Hotel", year: 2014, score: 91 },
+    { name: "Birdman", year: 2014, score: 91 },
+    { name: "Transformers: Age of Extinction", year: 2014, score: 18 },
+    { name: "Rage", year: 2014, score: 14 },
+    { name: "Get Out", year: 2017, score: 99 },
+    { name: "Justice League", year: 2017, score: 40 },
+    { name: "Ghost in the Shell", year: 2017, score: 46 },
+    { name: "The Big Sick", year: 2017, score: 98 }
+  ];
 
   t.deepEqual(bestMoviesOfTheYear(movies, 2014), [
-    'The Grand Budapest Hotel',
-    'Birdman'
-  ])
+    "The Grand Budapest Hotel",
+    "Birdman"
+  ]);
 
-  t.deepEqual(bestMoviesOfTheYear(movies, 2017), ['Get Out', 'The Big Sick'])
+  t.deepEqual(bestMoviesOfTheYear(movies, 2017), ["Get Out", "The Big Sick"]);
 
-  t.deepEqual(bestMoviesOfTheYear(movies, 2001), [])
-})
+  t.deepEqual(bestMoviesOfTheYear(movies, 2001), []);
+});
 
-test('Function Check', t => ensureDefined(t, 'everyoneIsOdd'))
-test('everyoneIsOdd', t => {
-  t.is(everyoneIsOdd([9, 15, 27, 101, 33]), true)
-  t.is(everyoneIsOdd([9, 23, 3, 4, 77]), false)
-})
+test("Function Check", t => ensureDefined(t, "everyoneIsOdd"));
+test("everyoneIsOdd", t => {
+  t.is(everyoneIsOdd([9, 15, 27, 101, 33]), true);
+  t.is(everyoneIsOdd([9, 23, 3, 4, 77]), false);
+});
 
-test('Function Check', t => ensureDefined(t, 'findTheNeedle'))
-test('findTheNeedle', t => {
+test("Function Check", t => ensureDefined(t, "findTheNeedle"));
+test("findTheNeedle", t => {
   t.is(
-    findTheNeedle(['one', 'time', 'there was a needle at', 'the market']),
-    'there was a needle at'
-  )
-})
+    findTheNeedle(["one", "time", "there was a needle at", "the market"]),
+    "there was a needle at"
+  );
+});
 
-test('Function Check', t => ensureDefined(t, 'findTheNeedleIndex'))
-test('findTheNeedleIndex', t => {
+test("Function Check", t => ensureDefined(t, "findTheNeedleIndex"));
+test("findTheNeedleIndex", t => {
   t.is(
-    findTheNeedleIndex(['one', 'time', 'there was a needle at', 'the market']),
+    findTheNeedleIndex(["one", "time", "there was a needle at", "the market"]),
     2
-  )
-})
+  );
+});
 
-test('Function Check', t => ensureDefined(t, 'someoneToLove'))
-test('someoneToLove()', t => {
-  t.is(someoneToLove(['how', 'now', 'brown', 'cow']), false)
-  t.is(someoneToLove(['how', 'now', 'blue', 'cow']), true)
-})
+test("Function Check", t => ensureDefined(t, "someoneToLove"));
+test("someoneToLove()", t => {
+  t.is(someoneToLove(["how", "now", "brown", "cow"]), false);
+  t.is(someoneToLove(["how", "now", "blue", "cow"]), true);
+});
 
-test('Function Check', t => ensureDefined(t, 'mapYourself'))
-test('mapYourself()', t => {
-  const originalMap = Array.prototype.map
+test("Function Check", t => ensureDefined(t, "mapYourself"));
+test("mapYourself()", t => {
+  const originalMap = Array.prototype.map;
 
-  Array.prototype.map = () => []
+  Array.prototype.map = () => [];
 
-  t.deepEqual(mapYourself([1, 2, 3]), [2, 4, 6])
-  t.deepEqual(mapYourself([9, 0, 1]), [18, 0, 2])
+  t.deepEqual(mapYourself([1, 2, 3]), [2, 4, 6]);
+  t.deepEqual(mapYourself([9, 0, 1]), [18, 0, 2]);
 
-  Array.prototype.map = originalMap
-})
+  Array.prototype.map = originalMap;
+});
 
-test('Function Check', t => ensureDefined(t, 'filterYourself'))
-test('filterYourself()', t => {
-  const original = Array.prototype.filter
+test("Function Check", t => ensureDefined(t, "filterYourself"));
+test("filterYourself()", t => {
+  const original = Array.prototype.filter;
 
-  Array.prototype.filter = () => []
+  Array.prototype.filter = () => [];
 
-  t.deepEqual(filterYourself([8, 1, 2, 3]), [8, 2])
+  t.deepEqual(filterYourself([8, 1, 2, 3]), [8, 2]);
 
-  Array.prototype.filter = original
-})
+  Array.prototype.filter = original;
+});
 
-test('Function Check', t => ensureDefined(t, 'everyYourself'))
-test('everyYourself()', t => {
-  const original = Array.prototype.every
+test("Function Check", t => ensureDefined(t, "everyYourself"));
+test("everyYourself()", t => {
+  const original = Array.prototype.every;
 
-  Array.prototype.every = () => undefined
+  Array.prototype.every = () => undefined;
 
-  t.deepEqual(everyYourself([8, 1, 2, 3]), false)
-  t.deepEqual(everyYourself([8, 10, 22, 38]), true)
+  t.deepEqual(everyYourself([8, 1, 2, 3]), false);
+  t.deepEqual(everyYourself([8, 10, 22, 38]), true);
 
-  Array.prototype.every = original
-})
+  Array.prototype.every = original;
+});
 
 /* eslint-enable */
